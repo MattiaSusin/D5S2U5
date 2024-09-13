@@ -24,7 +24,7 @@ public class DipendentiController {
     // 1 --> GET ALL
     @GetMapping
     public List<Dipendente> findAllDipendenti(){
-        return dipendentiService.findAll();
+        return dipendentiService.findAllDipendente();
     }
 
     // 2 --> GET USERNAME

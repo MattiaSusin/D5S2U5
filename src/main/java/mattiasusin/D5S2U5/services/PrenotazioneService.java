@@ -29,13 +29,19 @@ public class PrenotazioneService {
     private List<Prenotazione> prenotazioneList  = new ArrayList<>();
 
     // 2 --> GET TUTTI
-    public List<Prenotazione> findAll(){
+    public List<Prenotazione> findAllPrenotazione(){
         return this.prenotazioneList;
     }
 
     // 2 --> GET ID
-    public Dipendente findByUsername(String dipendenteUsername){
-        return this.prenotazioneRepository.
+    public Dipendente findById(UUID prenotazioneId){
+        return this.prenotazioneRepository.findById().orElseThrow(()-> new NotFoundException(prenotazioneId));
+    }
+
+    // 3 --> PUT
+    public Prenotazione findByIdAndUpdate(UUID prenotazioneId, Prenotazione newUserData){
+        Prenotazione found = this.findById(prenotazioneId);
+        
     }
 
 

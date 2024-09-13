@@ -25,8 +25,8 @@ public class DipendentiService {
     @Autowired
     private DipendentiRepository dipendentiRepository;
 
-    @Autowired
-    private Cloudinary cloudinary;
+   /* @Autowired
+    private Cloudinary cloudinary;*/
 
     //QUERY
 
@@ -53,8 +53,8 @@ public class DipendentiService {
     private List<Dipendente> dipendenteList = new ArrayList<>();
 
     // 2 --> GET TUTTI
-    public List<Dipendente> findAll(){
-        return this.dipendenteList;
+    public List<Dipendente> findAllDipendente(){
+        return this.dipendentiRepository.findAll();
     }
 
     // 2 --> GET ID
