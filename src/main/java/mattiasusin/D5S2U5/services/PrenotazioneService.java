@@ -35,12 +35,12 @@ public class PrenotazioneService {
 
     // 2 --> GET ID
     public Dipendente findByIdPrenotazione(UUID prenotazioneId){
-        return this.prenotazioneRepository.findById().orElseThrow(()-> new NotFoundException(prenotazioneId));
+        return this.prenotazioneRepository.findById(prenotazioneId).orElseThrow(()-> new NotFoundException(prenotazioneId));
     }
 
     // 3 --> PUT
     public Prenotazione findByIdAndUpdate(UUID prenotazioneId, Prenotazione newPrenotazioneData){
-        Prenotazione found = this.findById(prenotazioneId);
+        Prenotazione found = this.findByIdPrenotazione(prenotazioneId);
         found.setDipendente(newPrenotazioneData.getDipendente());
         found.setViaggio(newPrenotazioneData.getViaggio());
     }
