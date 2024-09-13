@@ -3,11 +3,10 @@ package mattiasusin.D5S2U5.controllers;
 import mattiasusin.D5S2U5.entities.Dipendente;
 import mattiasusin.D5S2U5.services.DipendentiService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -16,7 +15,7 @@ public class DipendentiController {
     @Autowired
     private DipendentiService dipendentiService;
 
-    // 1 --> GET TUTTI
+    // 1 --> GET ALL
     @GetMapping
     public List<Dipendente> findAllDipendenti(){
         return dipendentiService.findAll();
@@ -28,6 +27,22 @@ public class DipendentiController {
         return this.dipendentiService.findByUsername(dipendenteUsername);
     }
 
-    // 3 --> 
+    // 3 --> PUT
+    @PutMapping("/{dipendenteUsername}")
+    public Dipendente findByUsernameAndUpdate(@PathVariable String dipendenteUsername, @RequestBody Dipendente body){
+    return this.dipendentiService.findByUsernameAndUpdate(dipendenteUsername, body);
+    }
+
+    // 4 --> DELETE
+    @DeleteMapping("/{dipendenteUsername}")
+    public void findByUsernameAndDelete(@PathVariable String dipendenteUsername){
+        this.dipendentiService.findByUsernameAndDelete(dipendenteUsername);
+    }
+
+    // 5 --> UPLOAD
+    @PostMapping("/{dipendenteUsername/img}")
+    public void uploadImg(@RequestParam("img")MultipartFile image) throws IOException{
+        this.dipendentiService.uploadImg(image);
+    }
 
 }
