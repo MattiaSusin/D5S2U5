@@ -17,17 +17,17 @@ public class ViaggioService {
     @Autowired
     private ViaggioRepository viaggioRepository;
 
-    //trova tramite id
+    //GET ID
     public Viaggio findById(UUID viaggioId) {
         return this.viaggioRepository.findById(viaggioId).orElseThrow(() -> new NotFoundException(viaggioId));
     }
 
-    //Trova ALL
+    //GET ALL
     public List<Viaggio> findAll() {
         return this.viaggioRepository.findAll();
     }
 
-    //Creazione
+    //POST
     public Viaggio save(NewViaggioDTO body) {
         Viaggio newViaggio = new Viaggio(
                 LocalDate.parse(body.data()),
@@ -38,13 +38,13 @@ public class ViaggioService {
 
     }
 
-    //Trova id e elimina
+    //DELETE
     public void findByIdAndDelete(UUID viaggioId) {
         Viaggio found = this.findById(viaggioId);
         this.viaggioRepository.delete(found);
     }
 
-    //Trova id e modifica
+    //PUT
     public Viaggio findByIdAndUpdate(UUID viaggioId, Viaggio newViaggioData){
         Viaggio found = this.findById(viaggioId);
         found.setData(newViaggioData.getData());

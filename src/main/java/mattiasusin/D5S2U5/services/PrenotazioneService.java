@@ -34,14 +34,15 @@ public class PrenotazioneService {
     }
 
     // 2 --> GET ID
-    public Dipendente findById(UUID prenotazioneId){
+    public Dipendente findByIdPrenotazione(UUID prenotazioneId){
         return this.prenotazioneRepository.findById().orElseThrow(()-> new NotFoundException(prenotazioneId));
     }
 
     // 3 --> PUT
-    public Prenotazione findByIdAndUpdate(UUID prenotazioneId, Prenotazione newUserData){
+    public Prenotazione findByIdAndUpdate(UUID prenotazioneId, Prenotazione newPrenotazioneData){
         Prenotazione found = this.findById(prenotazioneId);
-        
+        found.setDipendente(newPrenotazioneData.getDipendente());
+        found.setViaggio(newPrenotazioneData.getViaggio());
     }
 
 
