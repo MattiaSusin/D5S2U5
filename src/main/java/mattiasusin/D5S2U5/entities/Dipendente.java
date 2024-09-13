@@ -21,6 +21,7 @@ public class Dipendente {
     @Id
     @GeneratedValue
     private String username;
+
     private String nome;
     private String cognome;
     private String email;
