@@ -15,6 +15,7 @@ public class ServerConfiguration {
     public Cloudinary imageUpload(@Value("${cloudinary.name}") String name,
                                   @Value("${cloudinary.key}") String key,
                                   @Value("${cloudinary.secret}") String secret){
+
         Map<String,String> configuration = new HashMap<>();
         configuration.put("cloud_name", name);
         configuration.put("api_key", key);

@@ -11,9 +11,7 @@ public record NewDipendenteDTO(
         @NotEmpty(message = "Non hai inserito il cognome")
         @Size(min = 4, max = 15, message = "Il cognome deve essere compreso tra 3 e 40 caratteri")
         String cognome,
-        @NotEmpty(message = "Non hai inserito l'username")
-        @Size(min = 2, max = 10, message = "l'username  deve essere compreso tra 2 e 10 caratteri")
-        String username,
+        java.util.UUID username,
         @NotEmpty(message = "Non hai inserito l'email")
         @Email(message = "L'email inserita non è valida")
         String email

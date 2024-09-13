@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.UUID;
 
 @Entity
-@Table(name = "dispositivi")
+@Table(name = "viaggi")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -23,7 +23,7 @@ public class Viaggio {
     private String destinazione;
     private Date data;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private StatoViaggio statoViaggio;
 
     //COSTRUTTORI

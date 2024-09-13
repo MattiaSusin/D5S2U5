@@ -19,8 +19,7 @@ import java.util.UUID;
 public class Dipendente {
 
     @Id
-    @GeneratedValue
-    private String username;
+    private UUID username;
 
     private String nome;
     private String cognome;
@@ -29,7 +28,7 @@ public class Dipendente {
 
     //COSTRUTTORI
 
-    public Dipendente(String name, String cognome, String email, String username) {
+    public Dipendente(String name, String cognome, String email, UUID username) {
         this.username = username;
         this.nome = nome;
         this.cognome = cognome;
