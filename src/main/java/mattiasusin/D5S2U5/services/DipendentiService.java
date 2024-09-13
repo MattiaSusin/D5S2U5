@@ -85,10 +85,10 @@ public class DipendentiService {
      found.setEmail(newDipendenteData.getEmail());
      return this.dipendentiRepository.save(found);
     }
-    // 5 --> IMG CLOUDINARY
+   /* // 5 --> IMG CLOUDINARY
     public void uploadImg(MultipartFile file) throws IOException{
         String url = (String) cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap()).get("url");
         System.out.println("URL: " + url);
     }
-
+*/
 }

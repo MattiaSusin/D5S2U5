@@ -65,11 +65,11 @@ public class DipendentiController {
         this.dipendentiService.findByUsernameAndDelete(dipendenteUsername);
     }
 
-    // 6 --> UPLOAD
+   /* // 6 --> UPLOAD
     @PostMapping("/{dipendenteUsername}/img")
     public void uploadImg(@RequestParam("img")MultipartFile image) throws IOException{
         this.dipendentiService.uploadImg(image);
-    }
+    }*/
 
 
 }
