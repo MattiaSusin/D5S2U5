@@ -34,21 +34,16 @@ public class DipendentiController {
     }
 
     // 3 --> POST
-    @PostMapping
+    @PostMapping("/{dipendenteid}")
     @ResponseStatus(HttpStatus.CREATED)
-    public NewDipendenteDTO save(@RequestBody @Validated NewDipendenteDTO body, BindingResult validationRisultato){
-        if (validationRisultato.hasErrors()){
+    public void saveD(@RequestBody @Validated NewDipendenteDTO body, BindingResult validationRisultato) {
+        if (validationRisultato.hasErrors()) {
             String messages = validationRisultato.getAllErrors().stream()
                     .map(objectError -> objectError.getDefaultMessage())
                     .collect(Collectors.joining(". "));
-            throw new BadRequestException((" Ci sono errori nel payload " + messages));
-        }else {
-            return new NewDipendenteDTO(
-                    this.dipendentiService.save(body).getNome(),
-                    this.dipendentiService.save(body).getCognome(),
-                    this.dipendentiService.save(body).getUsername(),
-                    this.dipendentiService.save(body).getEmail()
-            );
+            throw new BadRequestException("Ci sono errori nel payload: " + messages);
+        } else {
+            this.dipendentiService.save(body);
 
         }
     }

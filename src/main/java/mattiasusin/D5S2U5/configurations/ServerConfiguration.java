@@ -1,4 +1,4 @@
-package mattiasusin.D5S2U5.configurations;
+/*package mattiasusin.D5S2U5.configurations;
 
 import com.cloudinary.Cloudinary;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,4 +22,4 @@ public class ServerConfiguration {
         configuration.put("api_secret", secret);
         return new Cloudinary(configuration);
     }
-}
+}*/
