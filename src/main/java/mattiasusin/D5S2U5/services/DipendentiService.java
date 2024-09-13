@@ -1,6 +1,7 @@
 package mattiasusin.D5S2U5.services;
 
 import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import io.micrometer.observation.Observation;
 import mattiasusin.D5S2U5.entities.Dipendente;
 import mattiasusin.D5S2U5.exceptions.NotFoundException;
@@ -9,7 +10,9 @@ import mattiasusin.D5S2U5.repositories.DipendentiRepository;
 import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.UUID;
 
 @Service
@@ -28,11 +31,21 @@ public class DipendentiService {
     // 1 --> VEDIAMO SE LA MAIL E' PRESENTE
     public Dipendente save(NewDipendenteDTO body) {
         // 1 -->
-        this.dipendentiRepository.
+        this.dipendentiRepository.findByEmail(body.email()).ifPresent(
+                dipendente -> {
+                    try {
+                        throw new BadRequestException("L'email " + body.email() + "è già in uso!");
+                    } catch (BadRequestException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+        );
 
         // 2 -->
+        Dipendente newDipendente = new Dipendente(body.name(), body.cognome(), body.email(), body.username());
 
         // 3 -->
+        return this.dipendentiRepository.save(newDipendente);
     }
 
     // 2 --> GET ID
@@ -47,10 +60,26 @@ public class DipendentiService {
     // 4 --> PUT
     public Dipendente findByUsernameAndUpdate(String dipendenteUsername, Dipendente newDipendenteData){
         // 4.1 --> Se la mail è già presente
-        this.dipendentiRepository.f
+        this.dipendentiRepository.findByEmail(newDipendenteData.getEmail()).ifPresent(
         dipendente -> {
-            throw new BadRequestException("L'email " + newDipendenteData.getEmail() + "è già in uso");
+            try {
+                throw new BadRequestException("L'email " + newDipendenteData.getEmail() + "è già in uso");
+            } catch (BadRequestException e) {
+                throw new RuntimeException(e);
+            }
         }
+        );
+     Dipendente found = this.findByUsername(dipendenteUsername);
+     found.setNome(newDipendenteData.getNome());
+     found.setCognome(newDipendenteData.getCognome());
+     found.setUsername(newDipendenteData.getUsername());
+     found.setEmail(newDipendenteData.getEmail());
+     return this.dipendentiRepository.save(found);
+    }
+    // 5 --> IMG CLOUDINARY
+    public void uploadImg(MultipartFile file) throws IOException{
+        String url = (String) cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap()).get("url");
+        System.out.println("URL: " + url);
     }
 
 }

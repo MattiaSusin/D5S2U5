@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 import java.util.UUID;
 
-public class DipendentiRepository extends JpaRepository<Dipendente, UUID> {
+public interface DipendentiRepository extends JpaRepository<Dipendente, UUID> {
     Optional<Dipendente> findByEmail(String email);
 }

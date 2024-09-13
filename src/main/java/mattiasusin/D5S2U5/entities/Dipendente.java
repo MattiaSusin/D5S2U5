@@ -28,7 +28,8 @@ public class Dipendente {
     private String imgProfilo;
 
     //COSTRUTTORI
-    public Dipendente(String username, String nome, String cognome, String email, String imgProfilo) {
+
+    public Dipendente(String name, String cognome, String email, String username) {
         this.username = username;
         this.nome = nome;
         this.cognome = cognome;
