@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -46,6 +48,13 @@ public class DipendentiService {
 
         // 3 -->
         return this.dipendentiRepository.save(newDipendente);
+    }
+
+    private List<Dipendente> dipendenteList = new ArrayList<>();
+
+    // 2 --> GET TUTTI
+    public List<Dipendente> findAll(){
+        return this.dipendenteList;
     }
 
     // 2 --> GET ID
