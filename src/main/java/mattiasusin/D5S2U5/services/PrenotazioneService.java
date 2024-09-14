@@ -1,7 +1,6 @@
 package mattiasusin.D5S2U5.services;
 
 import com.cloudinary.Cloudinary;
-import mattiasusin.D5S2U5.entities.Dipendente;
 import mattiasusin.D5S2U5.entities.Prenotazione;
 import mattiasusin.D5S2U5.exceptions.NotFoundException;
 import mattiasusin.D5S2U5.payloads.NewPrenotazioneDTO;
@@ -20,29 +19,35 @@ public class PrenotazioneService {
 
     @Autowired
     private Cloudinary cloudinaryUp;
+    private List<Prenotazione> prenotazioneList = new ArrayList<>();
 
     // 1 --> SALVA E CREA
-    public Prenotazione save(NewPrenotazioneDTO body){
+    public Prenotazione save(NewPrenotazioneDTO body) {
         return this.prenotazioneRepository.save(new Prenotazione());
     }
 
-    private List<Prenotazione> prenotazioneList  = new ArrayList<>();
-
     // 2 --> GET TUTTI
-    public List<Prenotazione> findAllPrenotazione(){
+    public List<Prenotazione> findAllPrenotazione() {
         return this.prenotazioneList;
     }
 
     // 2 --> GET ID
-    public Dipendente findByIdPrenotazione(UUID prenotazioneId){
-        return this.prenotazioneRepository.findById(prenotazioneId).orElseThrow(()-> new NotFoundException(prenotazioneId));
+    public Prenotazione findByIdPrenotazione(UUID prenotazioneId) {
+        return this.prenotazioneRepository.findById(prenotazioneId).orElseThrow(() -> new NotFoundException(prenotazioneId));
     }
 
     // 3 --> PUT
-    public Prenotazione findByIdAndUpdate(UUID prenotazioneId, Prenotazione newPrenotazioneData){
+    public Prenotazione findByIdAndUpdatePrenotazione(UUID prenotazioneId, Prenotazione newPrenotazioneData) {
         Prenotazione found = this.findByIdPrenotazione(prenotazioneId);
         found.setDipendente(newPrenotazioneData.getDipendente());
         found.setViaggio(newPrenotazioneData.getViaggio());
+        return this.prenotazioneRepository.save(found);
+    }
+
+    // 4 --> DELETE
+    public void findByIdAndDeletePrenotazione(UUID prenotazioneId) {
+        Prenotazione found = this.findByIdPrenotazione(prenotazioneId);
+        this.prenotazioneRepository.delete(found);
     }
 
 
