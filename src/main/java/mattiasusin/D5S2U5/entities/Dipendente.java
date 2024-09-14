@@ -16,7 +16,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Dipendente extends Prenotazione {
+public class Dipendente{
 
     @Id
     private UUID username;

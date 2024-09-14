@@ -59,12 +59,14 @@ public class DipendentiController {
     public void findByUsernameAndDelete(@PathVariable String dipendenteUsername){
         this.dipendentiService.findByUsernameAndDelete(dipendenteUsername);
     }
+/*
 
-   /* // 6 --> UPLOAD
+    // 6 --> UPLOAD
     @PostMapping("/{dipendenteUsername}/img")
     public void uploadImg(@RequestParam("img")MultipartFile image) throws IOException{
         this.dipendentiService.uploadImg(image);
-    }*/
+    }
+*/
 
 
 }

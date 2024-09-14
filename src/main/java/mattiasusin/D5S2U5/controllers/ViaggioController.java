@@ -15,7 +15,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/viaggio")
+@RequestMapping("/viaggi")
 public class ViaggioController {
     @Autowired
     private ViaggioService viaggioService;

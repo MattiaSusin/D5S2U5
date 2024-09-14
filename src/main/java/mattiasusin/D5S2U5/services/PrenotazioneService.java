@@ -6,6 +6,7 @@ import mattiasusin.D5S2U5.exceptions.NotFoundException;
 import mattiasusin.D5S2U5.payloads.NewPrenotazioneDTO;
 import mattiasusin.D5S2U5.repositories.PrenotazioneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,9 +18,12 @@ public class PrenotazioneService {
     @Autowired
     private PrenotazioneRepository prenotazioneRepository;
 
-    @Autowired
-    private Cloudinary cloudinaryUp;
-    private List<Prenotazione> prenotazioneList = new ArrayList<>();
+ /*   @Autowired*/
+   /* private Cloudinary cloudinaryUp;*/
+    @Bean
+    public List<Prenotazione> prenotazioneList() {
+        return new ArrayList<>();
+    }
 
     // 1 --> SALVA E CREA
     public Prenotazione save(NewPrenotazioneDTO body) {
@@ -28,7 +32,7 @@ public class PrenotazioneService {
 
     // 2 --> GET TUTTI
     public List<Prenotazione> findAllPrenotazione() {
-        return this.prenotazioneList;
+        return prenotazioneRepository.findAll();
     }
 
     // 2 --> GET ID
@@ -41,6 +45,7 @@ public class PrenotazioneService {
         Prenotazione found = this.findByIdPrenotazione(prenotazioneId);
         found.setDipendente(newPrenotazioneData.getDipendente());
         found.setViaggio(newPrenotazioneData.getViaggio());
+        found.setNota(newPrenotazioneData.getNota());
         return this.prenotazioneRepository.save(found);
     }
 

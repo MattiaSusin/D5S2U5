@@ -1,10 +1,9 @@
 package mattiasusin.D5S2U5.entities;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
 import mattiasusin.D5S2U5.enums.StatoViaggio;
 
 import java.time.LocalDate;
@@ -28,7 +27,7 @@ public class Viaggio {
     private StatoViaggio statoViaggio;
 
     //COSTRUTTORI
-    public Viaggio(LocalDate parse, String destinazione, StatoViaggio statoViaggio) {
+    public Viaggio(@NotNull LocalDate parse, @NonNull String destinazione, StatoViaggio statoViaggio) {
         this.destinazione = destinazione;
         this.data = data;
         this.statoViaggio = statoViaggio;

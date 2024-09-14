@@ -53,7 +53,7 @@ public class PrenotazioneController {
     }
 
     // 5 --> DELETE
-    @DeleteMapping
+    @DeleteMapping("/{prenotazioniId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void ffindByIdAndDeletePrenotazione(@PathVariable UUID prenotazioneId) {
         this.prenotazioneService.findByIdAndDeletePrenotazione(prenotazioneId);
